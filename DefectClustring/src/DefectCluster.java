@@ -148,12 +148,14 @@ public class DefectCluster extends Applet implements Runnable {
 
 class DefectClusterPanel extends Panel{
 	private static final long serialVersionUID = -1009540911149095190L;
+	private Label toleranceLabel;
+	private Label minAmountLabel;	
 	private Label posotionLabel;
 	private Label cellNumsLabel;
 	private final String positionLabelText = "Position[";
 	private final String cellNums = "Cell(s)[";
 	private TextField tolerance;
-	private TextField minCount;
+	private TextField minAmount;
 	private final String startLabelText = "Cluster";
 	private final String stopLabelText = "Set";
 	private Button clusterButton;
@@ -186,8 +188,11 @@ class DefectClusterPanel extends Panel{
 			}
 		);
 	
-		tolerance = new TextField("3");
-		minCount = new TextField("1");
+		toleranceLabel = new Label("Tolerance");
+		minAmountLabel = new Label("Min. Amount");
+		
+		tolerance = new TextField("10");
+		minAmount = new TextField("1");
 		
 		// number of generations
 		posotionLabel = new Label(positionLabelText+"x:y]          ");
@@ -207,8 +212,10 @@ class DefectClusterPanel extends Panel{
 		);	
 
 		// create panel with controls
+		this.add(toleranceLabel);
 		this.add(tolerance);
-		this.add(minCount);
+		this.add(minAmountLabel);
+		this.add(minAmount);
 		this.add(shapesChoice);
 
 		this.add(clusterButton);
@@ -282,7 +289,7 @@ class DefectClusterPanel extends Panel{
 	}
 	
 	public int getCounts(){
-		return Integer.parseInt(minCount.getText());
+		return Integer.parseInt(minAmount.getText());
 	}
 }
 

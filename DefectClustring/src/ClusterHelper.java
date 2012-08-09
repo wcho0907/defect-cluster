@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class ClusterHelper {
 	private double tolerance;
-	private int counts;
+	private int minAmount;
 	private ArrayList<Defect> orinDefs;
 	private ArrayList<Defect> grpdDefs;
 	
@@ -12,7 +12,7 @@ public class ClusterHelper {
 	
 	public ClusterHelper(double d, int i) {
 		tolerance = d;
-		counts = i;
+		minAmount = i;
 		tolerance2 = tolerance * tolerance;
 		grpdDefs = new ArrayList<Defect>();
 	}
@@ -33,7 +33,7 @@ public class ClusterHelper {
 			thisDefect = (Defect)orinDefs.get(0);				
 			tempGroup = markGroup(thisDefect);
 
-			if(tempGroup.size()>= counts){
+			if(tempGroup.size()>= minAmount){
 				nowGroups++;			
 				for(int i = 0;i < tempGroup.size(); i++){
 					((Defect)tempGroup.get(i)).setClusterNo(nowGroups);						
@@ -87,7 +87,7 @@ public class ClusterHelper {
 	}
 
 	public int getCounts() {
-		return counts;
+		return minAmount;
 	}
 
 	public double getTolerance() {
@@ -95,7 +95,7 @@ public class ClusterHelper {
 	}
 
 	public void setCounts(int i) {
-		counts = i;
+		minAmount = i;
 	}
 
 	public void setTolerance(double d) {
